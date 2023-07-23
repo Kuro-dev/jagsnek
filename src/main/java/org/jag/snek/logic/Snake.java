@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Snake extends Tile {
     private final List<SnakeTail> tails = new ArrayList<>();
-    private int size = 1;
     private Direction direction = Direction.RIGHT;
 
     public Snake(Coordinate position) {
@@ -20,6 +19,10 @@ public class Snake extends Tile {
         return tails;
     }
 
+    public void initialise() {
+        tails.add(new SnakeTail(this.getPosition().add(Direction.LEFT)));
+    }
+
     public boolean isAlive() {
         //this.
         return true;
@@ -29,10 +32,11 @@ public class Snake extends Tile {
         this.setPosition(this.getPosition().add(direction));
     }
 
-    public void moveSnakeTail() {
-        //move tail + body
-        //  {}----->>
-
+    private void moveSnakeTail(Coordinate lastPos, boolean hasEaten) {
+        if (!hasEaten) {
+            tails.remove(0);
+        }
+        tails.add(new SnakeTail(lastPos));
     }
 
     /**
@@ -44,10 +48,31 @@ public class Snake extends Tile {
      * * update state (alive, dead) if necessary
      */
     public void completeCycle(PlayField field) {
+        Coordinate lastPos = getPosition();
         moveSnakeHead();
+        boolean hasEaten = CheckForFood(field);
+        moveSnakeTail(lastPos, hasEaten);
+    }
+
+    private boolean CheckForFood(PlayField field) {
+        Coordinate currentPos = getPosition();
+        boolean hasEaten = false;
+
+//        field.getSnacks().fori then press TAB
+//        field.getSnacks().for then press TAB
+
+        for (int i = 0; i < field.getSnacks().size(); i++) {
+            Snack snack = field.getSnacks().get(i);
+            if (currentPos.equals(snack.getPosition())) {
+                hasEaten = true;
+                field.getSnacks().remove(i);
+                break;
+            }
+        }
+        return hasEaten;
     }
 
     public int getSize() {
-        return size;
+        return tails.size() + 1;
     }
 }
