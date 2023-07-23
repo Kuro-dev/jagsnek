@@ -28,7 +28,7 @@ public class Snake extends Tile {
         return true;
     }
 
-    public void moveSnakeHead() {
+    private void moveSnakeHead() {
         this.setPosition(this.getPosition().add(direction));
     }
 
@@ -38,6 +38,7 @@ public class Snake extends Tile {
         }
         tails.add(new SnakeTail(lastPos));
     }
+
 
     /**
      * A cycle consists of:
