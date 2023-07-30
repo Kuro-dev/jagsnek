@@ -50,6 +50,7 @@ public class SnakeTest {
     @Test
     public void snakeDiesWhenRunningIntoItselfTest() {
         snake.getTails().add(new SnakeTail(new Coordinate(5, 5)));
+        snake.getTails().add(new SnakeTail(new Coordinate(5, 5)));
         snake.setDirection(Direction.RIGHT);
         assertTrue(snake.isAlive(), "Snake should still be alive");
         snake.completeCycle(field);

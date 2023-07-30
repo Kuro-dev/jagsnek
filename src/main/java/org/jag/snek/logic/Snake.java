@@ -6,6 +6,7 @@ import java.util.List;
 public class Snake extends Tile {
     private final List<SnakeTail> tails = new ArrayList<>();
     private Direction direction = Direction.RIGHT;
+    private boolean alive = true;
 
     public Snake(Coordinate position) {
         super(position);
@@ -25,7 +26,7 @@ public class Snake extends Tile {
 
     public boolean isAlive() {
         //this.
-        return true;
+        return alive;
     }
 
     private void moveSnakeHead() {
@@ -53,6 +54,17 @@ public class Snake extends Tile {
         moveSnakeHead();
         boolean hasEaten = CheckForFood(field);
         moveSnakeTail(lastPos, hasEaten);
+        checkSnakeAlive();
+    }
+
+    private void checkSnakeAlive() {
+        List<SnakeTail> tails = getTails();
+        for (int i = 0; i < tails.size(); i++) {
+            if (this.getPosition().equals(tails.get(i).getPosition())) {
+                alive = false;
+                break;
+            }
+        }
     }
 
     private boolean CheckForFood(PlayField field) {
