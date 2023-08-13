@@ -43,9 +43,7 @@ public class PlayField {
     }
 
     public void prepare() {
-        snek.getTails().add(new SnakeTail(snek.getPosition()));
-        snek.getTails().add(new SnakeTail(snek.getPosition()));
-        snek.getTails().add(new SnakeTail(snek.getPosition()));
+        snek.initialise();
     }
 
     public List<Snack> getSnacks() {
@@ -81,9 +79,7 @@ public class PlayField {
         //the coordinate does NOT overlap with the snakes head
         else if (tailPositions.contains(coordinate)) {
             //not okay
-        }
-
-        else if (snackPositions.contains(coordinate)) {
+        } else if (snackPositions.contains(coordinate)) {
             //not okay
         }
         //everything is okay
