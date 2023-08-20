@@ -20,7 +20,6 @@ public class PlayField {
     public PlayField(int width, int height, Snake snek) {
         this(width, height, snek, 1);
     }
-
     public PlayField(int width, int height, Snake snek, int preferredSnackAmount) {
         this.width = width;
         this.height = height;
@@ -36,6 +35,14 @@ public class PlayField {
 
     public static void setRNG(Random rng) {
         RNG = rng;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     public Snake getSnek() {
