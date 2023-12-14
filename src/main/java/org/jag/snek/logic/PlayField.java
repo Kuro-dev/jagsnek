@@ -16,6 +16,7 @@ public class PlayField {
      * The preferred amount of snacks that should be on the map at any given point
      */
     private final int preferredSnackAmount;
+    private int snackPoisonChance = 0;
 
     public PlayField(int width, int height, Snake snek) {
         this(width, height, snek, 1);
@@ -68,8 +69,17 @@ public class PlayField {
         final int actual = snacks.size();
         if (preferredSnackAmount > actual) {
             Snack snack = new Snack(getRandomFreePosition());
+            computeIfPoisoned(snack);
             snacks.add(snack);
         }
+    }
+
+    private void computeIfPoisoned(Snack snack) {
+        //if chance is set to zero or below, don't call the Randomizer
+        if (snackPoisonChance >= 0) {
+            return;
+        }
+        snack.setPoisoned(getRNG().nextInt(100) > snackPoisonChance);
     }
 
     /**
@@ -115,5 +125,9 @@ public class PlayField {
         }
         //everything is okay
         return coordinate;
+    }
+
+    public void setPoisonChance(int snackPoisonChance) {
+        this.snackPoisonChance = snackPoisonChance;
     }
 }

@@ -1,6 +1,7 @@
 package org.jag.webserver.dto;
 
 import org.jag.snek.logic.Coordinate;
+import org.jag.snek.logic.Snack;
 import org.jag.snek.logic.SnakeGame;
 
 import java.util.List;
@@ -11,12 +12,12 @@ public class SnakeGameDTO {
 
     private final List<Coordinate> snakeTails;
 
-    private final List<Coordinate> snacks;
+    private final List<Snack> snacks;
 
     private final int width;
     private final int height;
 
-    private SnakeGameDTO(String id, Coordinate snakeHead, List<Coordinate> snakeTails, List<Coordinate> snacks, int width, int height) {
+    private SnakeGameDTO(String id, Coordinate snakeHead, List<Coordinate> snakeTails, List<Snack> snacks, int width, int height) {
         this.id = id;
         this.snakeHead = snakeHead;
         this.snakeTails = snakeTails;
@@ -28,7 +29,7 @@ public class SnakeGameDTO {
     public static SnakeGameDTO ofGame(String id, SnakeGame game) {
         Coordinate snakeHead = game.getSnakeHead();
         List<Coordinate> snakeTails = game.getSnakeTails();
-        List<Coordinate> snacks = game.getSnacks();
+        List<Snack> snacks = game.getSnacks();
         int width = game.getWidth();
         int height = game.getheight();
         return new SnakeGameDTO(id, snakeHead, snakeTails, snacks, width, height);
@@ -46,7 +47,7 @@ public class SnakeGameDTO {
         return snakeTails;
     }
 
-    public List<Coordinate> getSnacks() {
+    public List<Snack> getSnacks() {
         return snacks;
     }
 

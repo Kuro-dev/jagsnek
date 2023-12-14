@@ -42,8 +42,8 @@ public class SnakeGame implements Runnable {
         return playfield.getSnek().getTails().stream().map(SnakeTail::getPosition).toList();
     }
 
-    public List<Coordinate> getSnacks() {
-        return playfield.getSnacks().stream().map(Snack::getPosition).toList();
+    public List<Snack> getSnacks() {
+        return playfield.getSnacks();
     }
 
     public int getWidth() {
