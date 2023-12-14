@@ -7,11 +7,21 @@ public class Snake extends Tile {
     private final List<SnakeTail> tails = new ArrayList<>();
     private Direction direction = Direction.RIGHT;
     private boolean alive = true;
+    /**
+     * The duration the snake will be poisoned for when eating poison
+     */
     private int poisonDuration = 5;
+    /**
+     * The remaining duration for the current Poison the snake ingested.
+     */
     private int poisonTurns = 0;
 
     public Snake(Coordinate position) {
         super(position);
+    }
+
+    public int getPoisonTurns() {
+        return poisonTurns;
     }
 
     public void setDirection(Direction direction) {

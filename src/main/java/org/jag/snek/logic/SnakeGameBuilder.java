@@ -7,6 +7,7 @@ public class SnakeGameBuilder {
     private int height = 200;
     private int snackAmount = 1;
     private int snackPoisonChance = 5;
+    private int poisonDuration = 5;
 
     public SnakeGame build() {
         Snake snake = new Snake(startPos);
@@ -15,6 +16,7 @@ public class SnakeGameBuilder {
         }
         PlayField field = new PlayField(width, height, snake, snackAmount);
         field.setPoisonChance(snackPoisonChance);
+        snake.setPoisonDuration(poisonDuration);
         field.prepare();
         return new SnakeGame(field);
     }
@@ -47,5 +49,9 @@ public class SnakeGameBuilder {
 
     public void setSnackPoisonChance(int snackPoisonChance) {
         this.snackPoisonChance = snackPoisonChance;
+    }
+
+    public void setPoisonDuration(Integer duration) {
+        this.poisonDuration = duration;
     }
 }

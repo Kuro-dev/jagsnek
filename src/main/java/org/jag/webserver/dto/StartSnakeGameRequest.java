@@ -23,6 +23,16 @@ public class StartSnakeGameRequest {
     @Parameter(description = "The chance that any given snack will be poisoned, inverting player movement. " +
             "Set to 0 or below to disable the mechanic.", example = "5")
     private Integer snackPoisonChance = null;
+    @Parameter(description = "The amount of cycles the snake will be poisoned after eating poisoned food", example = "5")
+    private Integer poisonDuration = null;
+
+    public Integer getPoisonDuration() {
+        return poisonDuration;
+    }
+
+    public void setPoisonDuration(Integer poisonDuration) {
+        this.poisonDuration = poisonDuration;
+    }
 
     public StartSnakeRequestCoordinate getStartPos() {
         return startPos;
@@ -68,6 +78,10 @@ public class StartSnakeGameRequest {
         return snackPoisonChance;
     }
 
+    public void setSnackPoisonChance(Integer snackPoisonChance) {
+        this.snackPoisonChance = snackPoisonChance;
+    }
+
     public void setSnackPoisonChance(int snackPoisonChance) {
         this.snackPoisonChance = snackPoisonChance;
     }
@@ -80,6 +94,7 @@ public class StartSnakeGameRequest {
         Optional.ofNullable(this.height).ifPresent(builder::fieldHeight);
         Optional.ofNullable(this.snackAmount).ifPresent(builder::setSnackAmount);
         Optional.ofNullable(snackPoisonChance).ifPresent(builder::setSnackPoisonChance);
+        Optional.ofNullable(poisonDuration).ifPresent(builder::setPoisonDuration);
         return builder.build();
     }
 }
