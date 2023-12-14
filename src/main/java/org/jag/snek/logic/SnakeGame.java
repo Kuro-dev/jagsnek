@@ -14,13 +14,6 @@ public class SnakeGame implements Runnable {
         this.playfield = playfield;
     }
 
-    public static SnakeGame newDefaultGame() {
-        Snake snake = new Snake(new Coordinate(100, 100));
-        snake.initialise();
-        PlayField field = new PlayField(200, 200, snake);
-        return new SnakeGame(field);
-    }
-
     public void changeDirection(Direction direction) {
         playfield.getSnek().setDirection(direction);
     }

@@ -78,20 +78,39 @@ public class PlayField {
      * NOT overlap with other snacks
      */
     private Coordinate getRandomFreePosition() {
+        return getRandomFreePosition(0);
+    }
+
+    /**
+     * Conditions:
+     * NOT overlap with snake head or tail
+     * NOT overlap with other snacks
+     */
+    private Coordinate getRandomFreePosition(int recursion) {
+
         Random rng = getRNG();
         int randomX = rng.nextInt(this.width);
         int randomY = rng.nextInt(this.height);
+        //TODO optimise this for less CPU usage,
+        // remove recursion and consider including a win-condition for the game to end
+        // when the snake reached the size of the entire play field.
         Coordinate coordinate = new Coordinate(randomX, randomY);
+        if (recursion >= 15) {
+            return coordinate;
+        }
         Snake snake = this.getSnek();
         List<Coordinate> tailPositions = snek.getTails().stream().map(Tile::getPosition).toList();
         List<Coordinate> snackPositions = snacks.stream().map(Tile::getPosition).toList();
         if (coordinate.equals(snake.getPosition())) {
             //not okay
+            return getRandomFreePosition(++recursion);
         }
         //the coordinate does NOT overlap with the snakes head
         else if (tailPositions.contains(coordinate)) {
+            return getRandomFreePosition(++recursion);
             //not okay
         } else if (snackPositions.contains(coordinate)) {
+            return getRandomFreePosition(++recursion);
             //not okay
         }
         //everything is okay

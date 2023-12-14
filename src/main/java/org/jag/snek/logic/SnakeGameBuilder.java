@@ -7,10 +7,6 @@ public class SnakeGameBuilder {
     private int height = 200;
     private int snackAmount = 1;
 
-    public SnakeGameBuilder setStartingPosition(int x, int y) {
-        return setStartingPosition(new Coordinate(x, y));
-    }
-
     public SnakeGameBuilder setStartingPosition(Coordinate startingPosition) {
         startPos = startingPosition;
         return this;

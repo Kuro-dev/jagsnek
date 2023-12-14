@@ -11,7 +11,6 @@ import org.jag.webserver.dto.SnakeGameDTO;
 import org.jag.webserver.dto.StartSnakeGameRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,9 +34,7 @@ public class SnakeGameController {
 
     public SnakeGameController() {
 
-        /**
-         * Clean the caches every 5 minutes
-         */
+        // Clean the caches every 5 minutes
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor(r -> {
             Thread t = new Thread(r, "Cleanup thread");
             t.setDaemon(true);
@@ -59,7 +56,7 @@ public class SnakeGameController {
             @ApiResponse(responseCode = "200", description = "Successfully started the game"),
     })
     @GetMapping(value = "/start", produces = "application/json")
-    public ResponseEntity<SnakeGameDTO> startGame(@RequestBody(required = false) @ParameterObject StartSnakeGameRequest options) {
+    public ResponseEntity<SnakeGameDTO> startGame(@RequestBody(required = false) StartSnakeGameRequest options) {
         String id = UUID.randomUUID().toString();
         SnakeGame game;
         if (options == null) {
