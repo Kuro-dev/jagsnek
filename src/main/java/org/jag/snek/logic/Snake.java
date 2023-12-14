@@ -21,10 +21,6 @@ public class Snake extends Tile {
     }
 
     public void initialise() {
-        tails.add(new SnakeTail(this.getPosition().add(Direction.LEFT)));
-        tails.add(new SnakeTail(this.getPosition()));
-        tails.add(new SnakeTail(this.getPosition()));
-        tails.add(new SnakeTail(this.getPosition()));
     }
 
     public boolean isAlive() {

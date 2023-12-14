@@ -1,4 +1,4 @@
-package org.jag.webserver;
+package org.jag.webserver.dto;
 
 import org.jag.snek.logic.Coordinate;
 import org.jag.snek.logic.SnakeGame;

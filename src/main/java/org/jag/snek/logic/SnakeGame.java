@@ -25,6 +25,10 @@ public class SnakeGame implements Runnable {
         playfield.getSnek().setDirection(direction);
     }
 
+    public boolean isSnakeAlive() {
+        return playfield.getSnek().isAlive();
+    }
+
     @Override
     public void run() {
         while (playfield.getSnek().isAlive()) {

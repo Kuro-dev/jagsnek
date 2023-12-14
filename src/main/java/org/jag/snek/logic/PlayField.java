@@ -20,6 +20,7 @@ public class PlayField {
     public PlayField(int width, int height, Snake snek) {
         this(width, height, snek, 1);
     }
+
     public PlayField(int width, int height, Snake snek, int preferredSnackAmount) {
         this.width = width;
         this.height = height;
@@ -51,6 +52,10 @@ public class PlayField {
 
     public void prepare() {
         snek.initialise();
+        for (int i = 0; i < preferredSnackAmount; i++) {
+            Snack snack = new Snack(getRandomFreePosition());
+            snacks.add(snack);
+        }
     }
 
     public List<Snack> getSnacks() {
