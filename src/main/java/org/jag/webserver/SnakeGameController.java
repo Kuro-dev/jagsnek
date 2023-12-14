@@ -32,9 +32,17 @@ import java.util.concurrent.TimeUnit;
 public class SnakeGameController {
     private static final Logger logger = LoggerFactory.getLogger(SnakeGameController.class);
     private final Map<String, SnakeGameWrapper> games = new HashMap<>();
-    ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
     public SnakeGameController() {
+
+        /**
+         * Clean the caches every 5 minutes
+         */
+        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor(r -> {
+            Thread t = new Thread(r, "Cleanup thread");
+            t.setDaemon(true);
+            return t;
+        });
         executorService.scheduleAtFixedRate(() -> {
             games.entrySet().removeIf(entry -> {
                 if (entry.getValue().isStale()) {

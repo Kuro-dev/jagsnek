@@ -41,7 +41,7 @@ public class SnakeGameWrapper {
     }
 
     /**
-     * @return True if the game has not been interacted with for a while
+     * @return True if the game has not been interacted with for 5 or more minutes
      */
     public boolean isStale() {
         return TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis() - lastInteractionMillis) >= 5;
