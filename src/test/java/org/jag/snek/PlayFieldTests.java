@@ -21,7 +21,7 @@ public class PlayFieldTests {
 
     @Test
     public void testSnacksArePutOnTheField() {
-        assertEquals(0, field.getSnacks().size());
+        assertEquals(1, field.getSnacks().size());
         field.completeCycle();
         assertEquals(1, field.getSnacks().size());
         field.completeCycle();
