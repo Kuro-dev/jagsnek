@@ -92,7 +92,7 @@ public class SnakeGameController {
 
     @Operation(description = "Changes the direction of the snake. Does *not* advance the game.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully advanced the game"),
+            @ApiResponse(responseCode = "200", description = "Successfully Changed the direction of the Snake"),
             @ApiResponse(responseCode = "404", description = "When the game-id does not exist"),
             @ApiResponse(responseCode = "400", description = "When no valid direction is given"),
     })
